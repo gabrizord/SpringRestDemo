@@ -1,0 +1,10 @@
+# Sistema de Gerenciamento de Inventário
+
+Este é um sistema simples de gerenciamento de inventário desenvolvido em Java com Spring Boot e MySQL.
+
+## Funcionalidades
+
+- Cadastro e gerenciamento de empresas
+- Emissão de notas fiscais
+- Registro de entradas e saídas de produtos
+- Geração de relatórios de vendas
