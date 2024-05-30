@@ -1,6 +1,7 @@
 package br.com.gabrizord.bmbackend.controllers;
 
 import br.com.gabrizord.bmbackend.entities.Pessoa;
+import br.com.gabrizord.bmbackend.entities.PessoaDTO;
 import br.com.gabrizord.bmbackend.services.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,7 +34,8 @@ public class PessoaController {
     }
 
     @PostMapping
-    public ResponseEntity<Pessoa> createPessoa(@RequestBody Pessoa pessoa) {
+    public ResponseEntity<Pessoa> createPessoa(@RequestBody PessoaDTO pessoaDTO) {
+        Pessoa pessoa = pessoaService.convertToEntity(pessoaDTO);
         Pessoa savedPessoa = pessoaService.save(pessoa);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedPessoa);
     }

@@ -1,6 +1,9 @@
 package br.com.gabrizord.bmbackend.services;
 
 import br.com.gabrizord.bmbackend.entities.Pessoa;
+import br.com.gabrizord.bmbackend.entities.PessoaDTO;
+import br.com.gabrizord.bmbackend.entities.PessoaFisica;
+import br.com.gabrizord.bmbackend.entities.PessoaJuridica;
 import br.com.gabrizord.bmbackend.repositories.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +35,18 @@ public class PessoaService {
 
     public void deleteById(Long id) {
         pessoaRepository.deleteById(id);
+    }
+
+    public Pessoa convertToEntity(PessoaDTO pessoaDTO) {
+        if ("F".equals(pessoaDTO.getTipoPessoa())) {
+            return new PessoaFisica(pessoaDTO.getNome(), pessoaDTO.getEndereco(), pessoaDTO.getEmail(), pessoaDTO.getTelefone(),
+                    pessoaDTO.getCpf(), pessoaDTO.getRg());
+        } else if ("J".equals(pessoaDTO.getTipoPessoa())) {
+            return new PessoaJuridica(pessoaDTO.getNome(), pessoaDTO.getEndereco(), pessoaDTO.getEmail(), pessoaDTO.getTelefone(),
+                    pessoaDTO.getCnpj(), pessoaDTO.getInscricaoEstadual(), pessoaDTO.getInscricaoMunicipal(), pessoaDTO.getPais(),
+                    pessoaDTO.getRegimeTributario(), pessoaDTO.getNaturezaJuridica(), pessoaDTO.getCodigoAtividade(),
+                    pessoaDTO.getResponsavel(), pessoaDTO.getCpfResponsavel(), pessoaDTO.getSituacaoCadastral());
+        }
+        throw new IllegalArgumentException("Tipo de pessoa inválido: " + pessoaDTO.getTipoPessoa());
     }
 }
