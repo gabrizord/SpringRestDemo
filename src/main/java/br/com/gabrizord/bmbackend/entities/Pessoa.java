@@ -2,6 +2,9 @@ package br.com.gabrizord.bmbackend.entities;
 
 import br.com.gabrizord.bmbackend.enums.TipoPessoa;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -13,21 +16,24 @@ public abstract class Pessoa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @NotBlank(message = "Nome é obrigatório")
+    @Size(max = 255, message = "Nome não pode ter mais de 255 caracteres")
     private String nome;
+
+    @Size(max = 50, message = "Endereço não pode ter mais de 50 caracteres")
+    private String endereco;
+
+    @NotBlank(message = "Email é obrigatório")
+    @Email(message = "Email deve ser um endereço de e-mail válido")
+    @Size(max = 50, message = "Email não pode ter mais de 50 caracteres")
+    private String email;
+
+    @Size(max = 15, message = "Telefone não pode ter mais de 15 caracteres")
+    private String telefone;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_pessoa", insertable=false, updatable=false)
     private TipoPessoa tipoPessoa;
-
-    @Column()
-    private String endereco;
-
-    @Column(length = 50)
-    private String email;
-
-    @Column(length = 20)
-    private String telefone;
 
     public Pessoa() {
     }
@@ -38,9 +44,6 @@ public abstract class Pessoa {
         this.email = email;
         this.telefone = telefone;
     }
-
-    // Getters and setters
-
 
     public String getTelefone() {
         return telefone;
