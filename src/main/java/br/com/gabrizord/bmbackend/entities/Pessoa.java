@@ -10,7 +10,7 @@ import jakarta.validation.constraints.Size;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_pessoa", discriminatorType = DiscriminatorType.STRING)
 @Table(name = "pessoa")
-public abstract class Pessoa {
+public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
