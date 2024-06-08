@@ -60,12 +60,9 @@ public class PessoaService {
         throw new IllegalArgumentException("Tipo de pessoa inválido.");
     }
 
-
-
-
-
     public void deleteById(Long id) {
         pessoaFisicaRepository.deleteById(id);
+        pessoaJuridicaRepository.deleteById(id);
     }
 
     public Pessoa convertToEntity(PessoaDTO pessoaDTO) {

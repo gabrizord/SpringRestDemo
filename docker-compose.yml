@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0.33
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: bmuniformes
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: 5978450740
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  app:
+    build: .
+    container_name: springboot-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    volumes:
+      - .:/app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/bmuniformes
+      SPRING_DATASOURCE_USERNAME: testuser
+      SPRING_DATASOURCE_PASSWORD: 5978450740
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQLDialect
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+
+volumes:
+  mysql_data:
+    driver: local
