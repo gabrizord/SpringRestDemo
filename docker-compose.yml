@@ -12,6 +12,14 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '2g'
+        reservations:
+          cpus: '1'
+          memory: '1g'
 
   app:
     build: .
@@ -27,8 +35,15 @@ services:
       SPRING_DATASOURCE_USERNAME: testuser
       SPRING_DATASOURCE_PASSWORD: 5978450740
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
-      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQLDialect
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    deploy:
+      resources:
+        limits:
+          cpus: '3'
+          memory: '4g'
+        reservations:
+          cpus: '2'
+          memory: '3g'
 
 volumes:
   mysql_data:

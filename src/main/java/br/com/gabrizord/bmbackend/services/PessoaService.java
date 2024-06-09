@@ -1,7 +1,9 @@
 package br.com.gabrizord.bmbackend.services;
 
+import br.com.gabrizord.bmbackend.dtos.PessoaFisicaDTO;
+import br.com.gabrizord.bmbackend.dtos.PessoaJuridicaDTO;
 import br.com.gabrizord.bmbackend.entities.Pessoa;
-import br.com.gabrizord.bmbackend.entities.PessoaDTO;
+import br.com.gabrizord.bmbackend.dtos.PessoaDTO;
 import br.com.gabrizord.bmbackend.entities.PessoaFisica;
 import br.com.gabrizord.bmbackend.entities.PessoaJuridica;
 import br.com.gabrizord.bmbackend.repositories.PessoaFisicaRepository;
@@ -66,15 +68,34 @@ public class PessoaService {
     }
 
     public Pessoa convertToEntity(PessoaDTO pessoaDTO) {
-        if ("F".equals(pessoaDTO.getTipoPessoa())) {
-            return new PessoaFisica(pessoaDTO.getNome(), pessoaDTO.getEndereco(), pessoaDTO.getEmail(), pessoaDTO.getTelefone(),
-                    pessoaDTO.getCpf(), pessoaDTO.getRg());
-        } else if ("J".equals(pessoaDTO.getTipoPessoa())) {
-            return new PessoaJuridica(pessoaDTO.getNome(), pessoaDTO.getEndereco(), pessoaDTO.getEmail(), pessoaDTO.getTelefone(),
-                    pessoaDTO.getCnpj(), pessoaDTO.getInscricaoEstadual(), pessoaDTO.getInscricaoMunicipal(), pessoaDTO.getPais(),
-                    pessoaDTO.getRegimeTributario(), pessoaDTO.getNaturezaJuridica(), pessoaDTO.getCodigoAtividade(),
-                    pessoaDTO.getResponsavel(), pessoaDTO.getCpfResponsavel(), pessoaDTO.getSituacaoCadastral());
+        if (pessoaDTO instanceof PessoaFisicaDTO pfDTO) {
+            return new PessoaFisica(
+                    pfDTO.getNome(),
+                    pfDTO.getEndereco(),
+                    pfDTO.getEmail(),
+                    pfDTO.getTelefone(),
+                    pfDTO.getCpf(),
+                    pfDTO.getRg()
+            );
+        } else if (pessoaDTO instanceof PessoaJuridicaDTO pjDTO) {
+            return new PessoaJuridica(
+                    pjDTO.getNome(),
+                    pjDTO.getEndereco(),
+                    pjDTO.getEmail(),
+                    pjDTO.getTelefone(),
+                    pjDTO.getCnpj(),
+                    pjDTO.getInscricaoEstadual(),
+                    pjDTO.getInscricaoMunicipal(),
+                    pjDTO.getPais(),
+                    pjDTO.getRegimeTributario(),
+                    pjDTO.getNaturezaJuridica(),
+                    pjDTO.getCodigoAtividade(),
+                    pjDTO.getResponsavel(),
+                    pjDTO.getCpfResponsavel(),
+                    pjDTO.getSituacaoCadastral()
+            );
         }
-        throw new IllegalArgumentException("Tipo de pessoa inválido: " + pessoaDTO.getTipoPessoa());
+        throw new IllegalArgumentException("Tipo de pessoa inválido: " + pessoaDTO.getClass().getSimpleName());
     }
+
 }
