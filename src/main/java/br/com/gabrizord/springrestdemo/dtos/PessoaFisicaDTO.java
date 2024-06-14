@@ -1,5 +1,6 @@
-package br.com.gabrizord.bmbackend.dtos;
+package br.com.gabrizord.springrestdemo.dtos;
 
+import br.com.gabrizord.springrestdemo.entities.PessoaFisica;
 import jakarta.validation.constraints.Size;
 
 public class PessoaFisicaDTO extends PessoaDTO {
@@ -9,6 +10,17 @@ public class PessoaFisicaDTO extends PessoaDTO {
 
     @Size(max = 20, message = "RG não pode ter mais de 20 caracteres")
     private String rg;
+
+    public PessoaFisica toEntity() {
+        return new PessoaFisica(
+                this.getNome(),
+                this.getEndereco(),
+                this.getEmail(),
+                this.getTelefone(),
+                this.getCpf(),
+                this.getRg()
+        );
+    }
 
     public @Size(min = 11, max = 14, message = "CPF deve ter entre 11 e 14 caracteres") String getCpf() {
         return cpf;

@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>br.com.gabrizord</groupId>
-    <artifactId>BMBackend</artifactId>
+    <artifactId>SpringRestDemo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>BMBackend</name>
-    <description>BMBackend</description>
+    <name>Spring Rest Demo</name>
+    <description>Spring Rest Demo</description>
     <properties>
         <java.version>17</java.version>
     </properties>

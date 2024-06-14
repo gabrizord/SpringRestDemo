@@ -1,10 +1,10 @@
-package br.com.gabrizord.bmbackend;
+package br.com.gabrizord.springrestdemo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BmBackendApplicationTests {
+class SpringRestDemoApplicationTests {
 
     @Test
     void contextLoads() {

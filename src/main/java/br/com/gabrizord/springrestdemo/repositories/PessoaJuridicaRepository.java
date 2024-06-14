@@ -1,7 +1,6 @@
-package br.com.gabrizord.bmbackend.repositories;
+package br.com.gabrizord.springrestdemo.repositories;
 
-import br.com.gabrizord.bmbackend.entities.PessoaFisica;
-import br.com.gabrizord.bmbackend.entities.PessoaJuridica;
+import br.com.gabrizord.springrestdemo.entities.PessoaJuridica;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

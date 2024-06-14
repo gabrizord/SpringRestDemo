@@ -1,13 +1,13 @@
-package br.com.gabrizord.bmbackend;
+package br.com.gabrizord.springrestdemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BmBackendApplication {
+public class SpringRestDemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BmBackendApplication.class, args);
+        SpringApplication.run(SpringRestDemoApplication.class, args);
     }
 
 }

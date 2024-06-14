@@ -1,5 +1,6 @@
-package br.com.gabrizord.bmbackend.dtos;
+package br.com.gabrizord.springrestdemo.dtos;
 
+import br.com.gabrizord.springrestdemo.entities.PessoaJuridica;
 import jakarta.validation.constraints.Size;
 
 public class PessoaJuridicaDTO extends PessoaDTO {
@@ -33,6 +34,25 @@ public class PessoaJuridicaDTO extends PessoaDTO {
 
     public @Size(min = 14, max = 20, message = "CNPJ deve ter entre 14 e 20 caracteres") String getCnpj() {
         return cnpj;
+    }
+
+    public PessoaJuridica toEntity() {
+        return new PessoaJuridica(
+                this.getNome(),
+                this.getEndereco(),
+                this.getEmail(),
+                this.getTelefone(),
+                this.getCnpj(),
+                this.getInscricaoEstadual(),
+                this.getInscricaoMunicipal(),
+                this.getPais(),
+                this.getRegimeTributario(),
+                this.getNaturezaJuridica(),
+                this.getCodigoAtividade(),
+                this.getResponsavel(),
+                this.getCpfResponsavel(),
+                this.getSituacaoCadastral()
+        );
     }
 
     public void setCnpj(@Size(min = 14, max = 20, message = "CNPJ deve ter entre 14 e 20 caracteres") String cnpj) {

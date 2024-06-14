@@ -1,6 +1,6 @@
-package br.com.gabrizord.bmbackend.entities;
+package br.com.gabrizord.springrestdemo.entities;
 
-import br.com.gabrizord.bmbackend.enums.TipoPessoa;
+import br.com.gabrizord.springrestdemo.enums.TipoPessoa;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

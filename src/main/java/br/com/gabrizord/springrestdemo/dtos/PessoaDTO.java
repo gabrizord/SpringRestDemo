@@ -1,4 +1,4 @@
-package br.com.gabrizord.bmbackend.dtos;
+package br.com.gabrizord.springrestdemo.dtos;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -25,6 +25,7 @@ public class PessoaDTO {
 
     @Size(max = 50, message = "País não pode ter mais de 50 caracteres")
     private String pais;
+
 
     public Long getId() {
         return id;

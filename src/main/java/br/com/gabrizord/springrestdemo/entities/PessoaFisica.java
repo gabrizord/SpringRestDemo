@@ -1,6 +1,6 @@
-package br.com.gabrizord.bmbackend.entities;
+package br.com.gabrizord.springrestdemo.entities;
 
-import br.com.gabrizord.bmbackend.enums.TipoPessoa;
+import br.com.gabrizord.springrestdemo.enums.TipoPessoa;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;

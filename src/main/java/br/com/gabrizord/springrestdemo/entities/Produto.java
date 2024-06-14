@@ -1,4 +1,4 @@
-package br.com.gabrizord.bmbackend.entities;
+package br.com.gabrizord.springrestdemo.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;

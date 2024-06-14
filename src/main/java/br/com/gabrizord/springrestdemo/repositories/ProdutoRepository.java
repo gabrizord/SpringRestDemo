@@ -1,6 +1,6 @@
-package br.com.gabrizord.bmbackend.repositories;
+package br.com.gabrizord.springrestdemo.repositories;
 
-import br.com.gabrizord.bmbackend.entities.Produto;
+import br.com.gabrizord.springrestdemo.entities.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

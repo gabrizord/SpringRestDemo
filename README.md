@@ -1,6 +1,6 @@
-# Sistema de Gerenciamento de Inventário
+# Sistema Demo RestAPI em Spring
 
-Este é um sistema simples de gerenciamento de inventário desenvolvido em Java com Spring Boot e MySQL.
+Este é um sistema demo simples de gerenciamento de inventário desenvolvido em Java com Spring Boot e MySQL.
 
 ## Funcionalidades
 

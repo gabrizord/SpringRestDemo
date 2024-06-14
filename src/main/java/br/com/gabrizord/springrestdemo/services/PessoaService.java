@@ -1,13 +1,13 @@
-package br.com.gabrizord.bmbackend.services;
+package br.com.gabrizord.springrestdemo.services;
 
-import br.com.gabrizord.bmbackend.dtos.PessoaFisicaDTO;
-import br.com.gabrizord.bmbackend.dtos.PessoaJuridicaDTO;
-import br.com.gabrizord.bmbackend.entities.Pessoa;
-import br.com.gabrizord.bmbackend.dtos.PessoaDTO;
-import br.com.gabrizord.bmbackend.entities.PessoaFisica;
-import br.com.gabrizord.bmbackend.entities.PessoaJuridica;
-import br.com.gabrizord.bmbackend.repositories.PessoaFisicaRepository;
-import br.com.gabrizord.bmbackend.repositories.PessoaJuridicaRepository;
+import br.com.gabrizord.springrestdemo.dtos.PessoaFisicaDTO;
+import br.com.gabrizord.springrestdemo.dtos.PessoaJuridicaDTO;
+import br.com.gabrizord.springrestdemo.entities.Pessoa;
+import br.com.gabrizord.springrestdemo.dtos.PessoaDTO;
+import br.com.gabrizord.springrestdemo.entities.PessoaFisica;
+import br.com.gabrizord.springrestdemo.entities.PessoaJuridica;
+import br.com.gabrizord.springrestdemo.repositories.PessoaFisicaRepository;
+import br.com.gabrizord.springrestdemo.repositories.PessoaJuridicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,32 +68,10 @@ public class PessoaService {
     }
 
     public Pessoa convertToEntity(PessoaDTO pessoaDTO) {
-        if (pessoaDTO instanceof PessoaFisicaDTO pfDTO) {
-            return new PessoaFisica(
-                    pfDTO.getNome(),
-                    pfDTO.getEndereco(),
-                    pfDTO.getEmail(),
-                    pfDTO.getTelefone(),
-                    pfDTO.getCpf(),
-                    pfDTO.getRg()
-            );
-        } else if (pessoaDTO instanceof PessoaJuridicaDTO pjDTO) {
-            return new PessoaJuridica(
-                    pjDTO.getNome(),
-                    pjDTO.getEndereco(),
-                    pjDTO.getEmail(),
-                    pjDTO.getTelefone(),
-                    pjDTO.getCnpj(),
-                    pjDTO.getInscricaoEstadual(),
-                    pjDTO.getInscricaoMunicipal(),
-                    pjDTO.getPais(),
-                    pjDTO.getRegimeTributario(),
-                    pjDTO.getNaturezaJuridica(),
-                    pjDTO.getCodigoAtividade(),
-                    pjDTO.getResponsavel(),
-                    pjDTO.getCpfResponsavel(),
-                    pjDTO.getSituacaoCadastral()
-            );
+        if (pessoaDTO instanceof PessoaFisicaDTO) {
+            return ((PessoaFisicaDTO) pessoaDTO).toEntity();
+        } else if (pessoaDTO instanceof PessoaJuridicaDTO) {
+            return ((PessoaJuridicaDTO) pessoaDTO).toEntity();
         }
         throw new IllegalArgumentException("Tipo de pessoa inválido: " + pessoaDTO.getClass().getSimpleName());
     }
