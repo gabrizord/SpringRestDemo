@@ -19,7 +19,6 @@ public class PessoaFisica extends Pessoa {
 
     public PessoaFisica() {
         super();
-        setTipoPessoa(TipoPessoa.F);
     }
 
     public PessoaFisica(String nome, String endereco, String email, String telefone,
@@ -27,7 +26,6 @@ public class PessoaFisica extends Pessoa {
         super(nome, endereco, email, telefone);
         this.cpf = cpf;
         this.rg = rg;
-        setTipoPessoa(TipoPessoa.F);
     }
 
     public String getCpf() {

@@ -41,7 +41,6 @@ public class PessoaJuridica extends Pessoa {
 
     public PessoaJuridica() {
         super();
-        setTipoPessoa(TipoPessoa.J);
     }
 
     public PessoaJuridica(String nome, String endereco, String email, String telefone,
@@ -59,7 +58,6 @@ public class PessoaJuridica extends Pessoa {
         this.responsavel = responsavel;
         this.cpfResponsavel = cpfResponsavel;
         this.situacaoCadastral = situacaoCadastral;
-        setTipoPessoa(TipoPessoa.J);
     }
 
     public String getCnpj() {
