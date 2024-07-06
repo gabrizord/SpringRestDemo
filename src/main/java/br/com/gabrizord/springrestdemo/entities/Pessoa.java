@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "tipo_pessoa", discriminatorType = DiscriminatorType.STRING)
 @Table(name = "pessoa")
 public abstract class Pessoa {
@@ -16,19 +16,16 @@ public abstract class Pessoa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Nome é obrigatório")
-    @Size(max = 255, message = "Nome não pode ter mais de 255 caracteres")
+    @Column(name = "nome", nullable = false, length = 255)
     private String nome;
 
-    @Size(max = 50, message = "Endereço não pode ter mais de 50 caracteres")
+    @Column(name = "endereco", length = 255)
     private String endereco;
 
-    @NotBlank(message = "Email é obrigatório")
-    @Email(message = "Email deve ser um endereço de e-mail válido")
-    @Size(max = 50, message = "Email não pode ter mais de 50 caracteres")
+    @Column(name = "email", unique = true, length = 255)
     private String email;
 
-    @Size(max = 15, message = "Telefone não pode ter mais de 15 caracteres")
+    @Column(name = "telefone", length = 15)
     private String telefone;
 
     @Enumerated(EnumType.STRING)

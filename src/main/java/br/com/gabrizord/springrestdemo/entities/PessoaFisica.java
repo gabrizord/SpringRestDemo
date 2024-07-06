@@ -11,12 +11,9 @@ import jakarta.validation.constraints.Size;
 @DiscriminatorValue("F")
 public class PessoaFisica extends Pessoa {
 
-    @NotBlank(message = "CPF é obrigatório")
-    @Size(min = 11, max = 14, message = "CPF deve ter entre 11 e 14 caracteres")
     @Column(length = 14)
     private String cpf;
 
-    @Size(max = 20, message = "RG não pode ter mais de 20 caracteres")
     @Column(length = 20)
     private String rg;
 
