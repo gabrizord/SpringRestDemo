@@ -8,7 +8,6 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "tipo_pessoa", discriminatorType = DiscriminatorType.STRING)
 @Table(name = "pessoa")
 public abstract class Pessoa {
 
@@ -27,10 +26,6 @@ public abstract class Pessoa {
 
     @Column(name = "telefone", length = 15)
     private String telefone;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "tipo_pessoa", insertable=false, updatable=false)
-    private TipoPessoa tipoPessoa;
 
     public Pessoa() {
     }
@@ -64,14 +59,6 @@ public abstract class Pessoa {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
-    }
-
-    public TipoPessoa getTipoPessoa() {
-        return tipoPessoa;
-    }
-
-    public void setTipoPessoa(TipoPessoa tipoPessoa) {
-        this.tipoPessoa = tipoPessoa;
     }
 
     public String getNome() {
