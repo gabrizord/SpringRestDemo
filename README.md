@@ -1,4 +1,4 @@
-# Sistema Demo RestAPI em Spring
+# Sistema Demo RestAPI em Spring boot
 
 Este é um sistema demo simples de gerenciamento de inventário desenvolvido em Java com Spring Boot e MySQL.
 
