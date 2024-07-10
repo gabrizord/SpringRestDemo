@@ -1,10 +1,6 @@
 package br.com.gabrizord.springrestdemo.entities;
 
-import br.com.gabrizord.springrestdemo.enums.TipoPessoa;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -15,13 +11,13 @@ public abstract class Pessoa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome", nullable = false, length = 255)
+    @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name = "endereco", length = 255)
+    @Column(name = "endereco")
     private String endereco;
 
-    @Column(name = "email", unique = true, length = 255)
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "telefone", length = 15)

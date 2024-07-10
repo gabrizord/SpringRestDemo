@@ -1,11 +1,8 @@
 package br.com.gabrizord.springrestdemo.entities;
 
-import br.com.gabrizord.springrestdemo.enums.TipoPessoa;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @DiscriminatorValue("F")

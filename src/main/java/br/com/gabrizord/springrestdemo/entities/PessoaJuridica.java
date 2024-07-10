@@ -1,6 +1,5 @@
 package br.com.gabrizord.springrestdemo.entities;
 
-import br.com.gabrizord.springrestdemo.enums.TipoPessoa;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -30,7 +29,7 @@ public class PessoaJuridica extends Pessoa {
     @Column(length = 20)
     private String codigoAtividade;
 
-    @Column(length = 255)
+    @Column()
     private String responsavel;
 
     @Column(length = 14)

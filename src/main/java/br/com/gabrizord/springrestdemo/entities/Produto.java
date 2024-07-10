@@ -80,23 +80,6 @@ public class Produto
     public Produto(){
 
     }
-    public Produto(String codigo, String descricao, String ncm, String cst, String cfop, String unidade,
-                   BigDecimal quantidade, BigDecimal valorUnitario, BigDecimal valorTotal, BigDecimal baseCalculoIcms,
-                   BigDecimal valorIcms, BigDecimal aliquotaIcms, String informacoesAdicionais) {
-        this.codigo = codigo;
-        this.descricao = descricao;
-        this.ncm = ncm;
-        this.cst = cst;
-        this.cfop = cfop;
-        this.unidade = unidade;
-        this.quantidade = quantidade;
-        this.valorUnitario = valorUnitario;
-        this.valorTotal = valorTotal;
-        this.baseCalculoIcms = baseCalculoIcms;
-        this.valorIcms = valorIcms;
-        this.aliquotaIcms = aliquotaIcms;
-        this.informacoesAdicionais = informacoesAdicionais;
-    }
 
     // Getters e Setters
 

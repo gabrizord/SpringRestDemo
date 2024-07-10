@@ -1,7 +1,5 @@
 package br.com.gabrizord.springrestdemo.services;
 
-import br.com.gabrizord.springrestdemo.dtos.PessoaFisicaDTO;
-import br.com.gabrizord.springrestdemo.dtos.PessoaJuridicaDTO;
 import br.com.gabrizord.springrestdemo.entities.Pessoa;
 import br.com.gabrizord.springrestdemo.dtos.PessoaDTO;
 import br.com.gabrizord.springrestdemo.entities.PessoaFisica;
