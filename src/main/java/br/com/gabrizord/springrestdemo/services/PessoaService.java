@@ -68,12 +68,7 @@ public class PessoaService {
     }
 
     public Pessoa convertToEntity(PessoaDTO pessoaDTO) {
-        if (pessoaDTO instanceof PessoaFisicaDTO) {
-            return ((PessoaFisicaDTO) pessoaDTO).toEntity();
-        } else if (pessoaDTO instanceof PessoaJuridicaDTO) {
-            return ((PessoaJuridicaDTO) pessoaDTO).toEntity();
-        }
-        throw new IllegalArgumentException("Tipo de pessoa inválido: " + pessoaDTO.getClass().getSimpleName());
+       return pessoaDTO.toEntity();
     }
 
 }

@@ -1,10 +1,11 @@
 package br.com.gabrizord.springrestdemo.dtos;
 
+import br.com.gabrizord.springrestdemo.entities.Pessoa;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public class PessoaDTO {
+public abstract class PessoaDTO {
 
     private Long id;
 
@@ -26,7 +27,6 @@ public class PessoaDTO {
     @Size(max = 50, message = "País não pode ter mais de 50 caracteres")
     private String pais;
 
-
     public Long getId() {
         return id;
     }
@@ -35,43 +35,45 @@ public class PessoaDTO {
         this.id = id;
     }
 
-    public @NotBlank(message = "Nome é obrigatório") @Size(max = 255, message = "Nome não pode ter mais de 255 caracteres") String getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(@NotBlank(message = "Nome é obrigatório") @Size(max = 255, message = "Nome não pode ter mais de 255 caracteres") String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public @Size(max = 50, message = "Endereço não pode ter mais de 50 caracteres") String getEndereco() {
+    public String getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(@Size(max = 50, message = "Endereço não pode ter mais de 50 caracteres") String endereco) {
+    public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
 
-    public @NotBlank(message = "Email é obrigatório") @Email(message = "Email deve ser um endereço de e-mail válido") @Size(max = 50, message = "Email não pode ter mais de 50 caracteres") String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(@NotBlank(message = "Email é obrigatório") @Email(message = "Email deve ser um endereço de e-mail válido") @Size(max = 50, message = "Email não pode ter mais de 50 caracteres") String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public @Size(max = 15, message = "Telefone não pode ter mais de 15 caracteres") String getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(@Size(max = 15, message = "Telefone não pode ter mais de 15 caracteres") String telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
-    public @Size(max = 50, message = "País não pode ter mais de 50 caracteres") String getPais() {
+    public String getPais() {
         return pais;
     }
 
-    public void setPais(@Size(max = 50, message = "País não pode ter mais de 50 caracteres") String pais) {
+    public void setPais(String pais) {
         this.pais = pais;
     }
+
+    public abstract Pessoa toEntity();
 }

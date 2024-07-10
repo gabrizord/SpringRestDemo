@@ -87,7 +87,6 @@ public class PessoaController {
         }
     }
 
-
     @DeleteMapping("/{id}")
     @Operation(summary = "Deleta uma pessoa", description = "Remove uma pessoa do sistema pelo seu ID.")
     @ApiResponses({

@@ -11,6 +11,7 @@ public class PessoaFisicaDTO extends PessoaDTO {
     @Size(max = 20, message = "RG não pode ter mais de 20 caracteres")
     private String rg;
 
+    @Override
     public PessoaFisica toEntity() {
         return new PessoaFisica(
                 this.getNome(),
@@ -22,19 +23,19 @@ public class PessoaFisicaDTO extends PessoaDTO {
         );
     }
 
-    public @Size(min = 11, max = 14, message = "CPF deve ter entre 11 e 14 caracteres") String getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(@Size(min = 11, max = 14, message = "CPF deve ter entre 11 e 14 caracteres") String cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public @Size(max = 20, message = "RG não pode ter mais de 20 caracteres") String getRg() {
+    public String getRg() {
         return rg;
     }
 
-    public void setRg(@Size(max = 20, message = "RG não pode ter mais de 20 caracteres") String rg) {
+    public void setRg(String rg) {
         this.rg = rg;
     }
 }

@@ -32,10 +32,7 @@ public class PessoaJuridicaDTO extends PessoaDTO {
     @Size(max = 20, message = "Situação Cadastral não pode ter mais de 20 caracteres")
     private String situacaoCadastral;
 
-    public @Size(min = 14, max = 20, message = "CNPJ deve ter entre 14 e 20 caracteres") String getCnpj() {
-        return cnpj;
-    }
-
+    @Override
     public PessoaJuridica toEntity() {
         return new PessoaJuridica(
                 this.getNome(),
@@ -55,71 +52,75 @@ public class PessoaJuridicaDTO extends PessoaDTO {
         );
     }
 
-    public void setCnpj(@Size(min = 14, max = 20, message = "CNPJ deve ter entre 14 e 20 caracteres") String cnpj) {
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
-    public @Size(max = 20, message = "Inscrição Estadual não pode ter mais de 20 caracteres") String getInscricaoEstadual() {
+    public String getInscricaoEstadual() {
         return inscricaoEstadual;
     }
 
-    public void setInscricaoEstadual(@Size(max = 20, message = "Inscrição Estadual não pode ter mais de 20 caracteres") String inscricaoEstadual) {
+    public void setInscricaoEstadual(String inscricaoEstadual) {
         this.inscricaoEstadual = inscricaoEstadual;
     }
 
-    public @Size(max = 20, message = "Inscrição Municipal não pode ter mais de 20 caracteres") String getInscricaoMunicipal() {
+    public String getInscricaoMunicipal() {
         return inscricaoMunicipal;
     }
 
-    public void setInscricaoMunicipal(@Size(max = 20, message = "Inscrição Municipal não pode ter mais de 20 caracteres") String inscricaoMunicipal) {
+    public void setInscricaoMunicipal(String inscricaoMunicipal) {
         this.inscricaoMunicipal = inscricaoMunicipal;
     }
 
-    public @Size(max = 20, message = "Regime Tributário não pode ter mais de 20 caracteres") String getRegimeTributario() {
+    public String getRegimeTributario() {
         return regimeTributario;
     }
 
-    public void setRegimeTributario(@Size(max = 20, message = "Regime Tributário não pode ter mais de 20 caracteres") String regimeTributario) {
+    public void setRegimeTributario(String regimeTributario) {
         this.regimeTributario = regimeTributario;
     }
 
-    public @Size(max = 100, message = "Natureza Jurídica não pode ter mais de 100 caracteres") String getNaturezaJuridica() {
+    public String getNaturezaJuridica() {
         return naturezaJuridica;
     }
 
-    public void setNaturezaJuridica(@Size(max = 100, message = "Natureza Jurídica não pode ter mais de 100 caracteres") String naturezaJuridica) {
+    public void setNaturezaJuridica(String naturezaJuridica) {
         this.naturezaJuridica = naturezaJuridica;
     }
 
-    public @Size(max = 20, message = "Código de Atividade não pode ter mais de 20 caracteres") String getCodigoAtividade() {
+    public String getCodigoAtividade() {
         return codigoAtividade;
     }
 
-    public void setCodigoAtividade(@Size(max = 20, message = "Código de Atividade não pode ter mais de 20 caracteres") String codigoAtividade) {
+    public void setCodigoAtividade(String codigoAtividade) {
         this.codigoAtividade = codigoAtividade;
     }
 
-    public @Size(max = 255, message = "Responsável não pode ter mais de 255 caracteres") String getResponsavel() {
+    public String getResponsavel() {
         return responsavel;
     }
 
-    public void setResponsavel(@Size(max = 255, message = "Responsável não pode ter mais de 255 caracteres") String responsavel) {
+    public void setResponsavel(String responsavel) {
         this.responsavel = responsavel;
     }
 
-    public @Size(min = 11, max = 14, message = "CPF do Responsável deve ter entre 11 e 14 caracteres") String getCpfResponsavel() {
+    public String getCpfResponsavel() {
         return cpfResponsavel;
     }
 
-    public void setCpfResponsavel(@Size(min = 11, max = 14, message = "CPF do Responsável deve ter entre 11 e 14 caracteres") String cpfResponsavel) {
+    public void setCpfResponsavel(String cpfResponsavel) {
         this.cpfResponsavel = cpfResponsavel;
     }
 
-    public @Size(max = 20, message = "Situação Cadastral não pode ter mais de 20 caracteres") String getSituacaoCadastral() {
+    public String getSituacaoCadastral() {
         return situacaoCadastral;
     }
 
-    public void setSituacaoCadastral(@Size(max = 20, message = "Situação Cadastral não pode ter mais de 20 caracteres") String situacaoCadastral) {
+    public void setSituacaoCadastral(String situacaoCadastral) {
         this.situacaoCadastral = situacaoCadastral;
     }
 }
