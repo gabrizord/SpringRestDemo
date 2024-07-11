@@ -36,12 +36,15 @@ public class PessoaService {
     }
 
     public Optional<Pessoa> findById(Long id) {
-        Optional<Pessoa> pessoa = pessoaFisicaRepository.findById(id).map(p -> p);
+        Optional<Pessoa> pessoa = pessoaFisicaRepository.findById(id)
+                .map(pf -> pf);
         if (pessoa.isEmpty()) {
-            pessoa = pessoaJuridicaRepository.findById(id).map(p -> p);
+            pessoa = pessoaJuridicaRepository.findById(id)
+                    .map(pj -> pj);
         }
-        return pessoa;
+        return Optional.of(pessoa.orElseThrow(() -> new IllegalArgumentException("Pessoa não encontrada: " + id)));
     }
+
 
     public Pessoa save(Pessoa pessoa) {
         if (pessoa instanceof PessoaFisica pf) {
@@ -66,7 +69,7 @@ public class PessoaService {
     }
 
     public Pessoa convertToEntity(PessoaDTO pessoaDTO) {
-       return pessoaDTO.toEntity();
+        return pessoaDTO.toEntity();
     }
 
 }
