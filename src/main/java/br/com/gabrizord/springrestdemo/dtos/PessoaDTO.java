@@ -24,9 +24,6 @@ public abstract class PessoaDTO {
     @Size(max = 15, message = "Telefone não pode ter mais de 15 caracteres")
     private String telefone;
 
-    @Size(max = 50, message = "País não pode ter mais de 50 caracteres")
-    private String pais;
-
     public Long getId() {
         return id;
     }
@@ -65,14 +62,6 @@ public abstract class PessoaDTO {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
     }
 
     public abstract Pessoa toEntity();
