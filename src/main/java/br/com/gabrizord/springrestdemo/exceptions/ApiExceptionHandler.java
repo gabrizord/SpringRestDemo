@@ -24,8 +24,11 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<String> handleEntityNotFoundException(EntityNotFoundException e) {
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<Map<String, String>> handleEntityNotFoundException(EntityNotFoundException e) {
+        Map<String, String> errorDetails = new HashMap<>();
+        errorDetails.put("error", "Entity not found");
+        errorDetails.put("message", e.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDetails);
     }
 
 }

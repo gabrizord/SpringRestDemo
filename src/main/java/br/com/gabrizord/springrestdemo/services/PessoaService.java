@@ -6,6 +6,7 @@ import br.com.gabrizord.springrestdemo.entities.PessoaFisica;
 import br.com.gabrizord.springrestdemo.entities.PessoaJuridica;
 import br.com.gabrizord.springrestdemo.repositories.PessoaFisicaRepository;
 import br.com.gabrizord.springrestdemo.repositories.PessoaJuridicaRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +43,7 @@ public class PessoaService {
             pessoa = pessoaJuridicaRepository.findById(id)
                     .map(pj -> pj);
         }
-        return Optional.of(pessoa.orElseThrow(() -> new IllegalArgumentException("Pessoa não encontrada: " + id)));
+        return Optional.of(pessoa.orElseThrow(EntityNotFoundException::new));
     }
 
 
