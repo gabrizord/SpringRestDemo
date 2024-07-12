@@ -30,6 +30,6 @@ public class PessoaControllerTest {
         pessoaFisica.setCpf("12345678901");
         pessoaFisica.setRg("123456789");
 
-        given(pessoaService.findById(1L)).willReturn(java.util.Optional.of(pessoaFisica));
+        given(pessoaService.findById(1L)).willReturn(pessoaFisica);
     }
 }
