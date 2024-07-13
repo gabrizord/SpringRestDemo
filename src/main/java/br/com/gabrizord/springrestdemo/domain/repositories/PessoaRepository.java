@@ -3,5 +3,8 @@ package br.com.gabrizord.springrestdemo.domain.repositories;
 import br.com.gabrizord.springrestdemo.domain.entities.Pessoa;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
+    Optional<Object> findByEmail(String email);
 }

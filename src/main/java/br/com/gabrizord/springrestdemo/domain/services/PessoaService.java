@@ -46,20 +46,38 @@ public class PessoaService {
     }
 
     public Pessoa save(Pessoa pessoa) {
+        checkUnique(pessoa);
+        if (pessoa instanceof PessoaFisica) {
+            return pessoaFisicaRepository.save((PessoaFisica) pessoa);
+        } else if (pessoa instanceof PessoaJuridica) {
+            return pessoaJuridicaRepository.save((PessoaJuridica) pessoa);
+        } else {
+            throw new IllegalArgumentException("Tipo de pessoa inválido.");
+        }
+    }
+
+    public Pessoa update(Pessoa pessoa) {
+
+        return null;
+    }
+
+    private void checkUnique(Pessoa pessoa) {
         if (pessoa instanceof PessoaFisica pf) {
             pessoaFisicaRepository.findByCpf(pf.getCpf())
                     .ifPresent(p -> {
                         throw new IllegalArgumentException("CPF já registrado: " + pf.getCpf());
                     });
-            return pessoaFisicaRepository.save(pf);
         } else if (pessoa instanceof PessoaJuridica pj) {
             pessoaJuridicaRepository.findByCnpj(pj.getCnpj())
                     .ifPresent(p -> {
                         throw new IllegalArgumentException("CNPJ já registrado: " + pj.getCnpj());
                     });
-            return pessoaJuridicaRepository.save(pj);
         }
-        throw new IllegalArgumentException("Tipo de pessoa inválido.");
+        // Aqui adicionamos a lógica para verificar a unicidade do e-mail
+        pessoaRepository.findByEmail(pessoa.getEmail())
+                .ifPresent(p -> {
+                    throw new IllegalArgumentException("E-mail já registrado: " + pessoa.getEmail());
+                });
     }
 
     public void deleteById(Long id) {

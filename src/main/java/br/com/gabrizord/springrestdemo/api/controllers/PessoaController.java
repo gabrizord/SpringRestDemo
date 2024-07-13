@@ -32,14 +32,16 @@ public class PessoaController {
     @GetMapping
     @Operation(summary = "Obtém todas as pessoas", description = "Retorna uma lista de todas as pessoas cadastradas.")
     @ApiResponse(responseCode = "200", description = "Lista de pessoas encontradas")
-    public List<Pessoa> getAllPessoas() {
-        return pessoaService.findAll();
+    public ResponseEntity<List<Pessoa>> getAllPessoas() {
+        return ResponseEntity.ok(pessoaService.findAll());
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Obtém uma pessoa por ID", description = "Retorna os dados de uma pessoa específica pelo seu ID.")
-    @ApiResponse(responseCode = "200", description = "Pessoa encontrada")
-    @ApiResponse(responseCode = "404", description = "Pessoa não encontrada")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Pessoa encontrada"),
+            @ApiResponse(responseCode = "404", description = "Pessoa não encontrada")
+    })
     public ResponseEntity<Pessoa> getPessoaById(@PathVariable Long id) {
         return ResponseEntity.ok(pessoaService.findById(id));
     }
