@@ -74,7 +74,6 @@ public class PessoaController {
             @ApiResponse(responseCode = "400", description = "Dados inválidos para atualização")
     })
     public ResponseEntity<Pessoa> updatePessoa(@PathVariable Long id, @Valid @RequestBody PessoaDTO pessoaDTO) {
-        Pessoa existingPessoa = pessoaService.findById(id);
         Pessoa pessoaToUpdate = pessoaService.convertToEntity(pessoaDTO);
         pessoaToUpdate.setId(id);
         Pessoa updatedPessoa = pessoaService.save(pessoaToUpdate);
