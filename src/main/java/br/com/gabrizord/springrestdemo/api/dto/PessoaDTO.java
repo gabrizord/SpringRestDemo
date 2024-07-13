@@ -1,14 +1,10 @@
 package br.com.gabrizord.springrestdemo.api.dto;
 
-import br.com.gabrizord.springrestdemo.domain.entities.Pessoa;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public abstract class PessoaDTO {
-
-    private Long id;
+public class PessoaDTO {
 
     @NotBlank(message = "Nome é obrigatório")
     @Size(max = 255, message = "Nome não pode ter mais de 255 caracteres")
@@ -26,14 +22,6 @@ public abstract class PessoaDTO {
     @NotBlank(message = "Telefone é obrigatório")
     @Size(max = 15, message = "Telefone não pode ter mais de 15 caracteres")
     private String telefone;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
@@ -67,5 +55,4 @@ public abstract class PessoaDTO {
         this.telefone = telefone;
     }
 
-    public abstract Pessoa toEntity();
 }

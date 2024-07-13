@@ -1,6 +1,5 @@
 package br.com.gabrizord.springrestdemo.api.dto;
 
-import br.com.gabrizord.springrestdemo.domain.entities.PessoaJuridica;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -45,26 +44,6 @@ public class PessoaJuridicaDTO extends PessoaDTO {
     @NotBlank(message = "Situação Cadastral é obrigatório")
     @Size(max = 20, message = "Situação Cadastral não pode ter mais de 20 caracteres")
     private String situacaoCadastral;
-
-    @Override
-    public PessoaJuridica toEntity() {
-        return new PessoaJuridica(
-                this.getNome(),
-                this.getEndereco(),
-                this.getEmail(),
-                this.getTelefone(),
-                this.getCnpj(),
-                this.getInscricaoEstadual(),
-                this.getInscricaoMunicipal(),
-                this.getPais(),
-                this.getRegimeTributario(),
-                this.getNaturezaJuridica(),
-                this.getCodigoAtividade(),
-                this.getResponsavel(),
-                this.getCpfResponsavel(),
-                this.getSituacaoCadastral()
-        );
-    }
 
     public String getCnpj() {
         return cnpj;

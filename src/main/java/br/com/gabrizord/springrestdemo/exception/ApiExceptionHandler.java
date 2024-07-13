@@ -53,14 +53,4 @@ public class ApiExceptionHandler {
         );
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDetails);
     }
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Object> handleAll(Exception ex) {
-        ErrorDetails errorDetails = new ErrorDetails(
-                HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                "Ocorreu um erro inesperado",
-                LocalDateTime.now()
-        );
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorDetails);
-    }
 }

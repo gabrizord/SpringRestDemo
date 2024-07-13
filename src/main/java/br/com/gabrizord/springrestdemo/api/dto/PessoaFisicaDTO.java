@@ -1,6 +1,5 @@
 package br.com.gabrizord.springrestdemo.api.dto;
 
-import br.com.gabrizord.springrestdemo.domain.entities.PessoaFisica;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -13,18 +12,6 @@ public class PessoaFisicaDTO extends PessoaDTO {
     @NotBlank(message = "RG é obrigatório")
     @Size(max = 20, message = "RG não pode ter mais de 20 caracteres")
     private String rg;
-
-    @Override
-    public PessoaFisica toEntity() {
-        return new PessoaFisica(
-                this.getNome(),
-                this.getEndereco(),
-                this.getEmail(),
-                this.getTelefone(),
-                this.getCpf(),
-                this.getRg()
-        );
-    }
 
     public String getCpf() {
         return cpf;

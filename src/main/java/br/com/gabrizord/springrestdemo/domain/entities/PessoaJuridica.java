@@ -59,6 +59,23 @@ public class PessoaJuridica extends Pessoa {
         this.situacaoCadastral = situacaoCadastral;
     }
 
+    public PessoaJuridica(Long id, String nome, String endereco, String email, String telefone,
+                          String cnpj, String inscricaoEstadual, String inscricaoMunicipal, String pais,
+                          String regimeTributario, String naturezaJuridica, String codigoAtividade,
+                          String responsavel, String cpfResponsavel, String situacaoCadastral) {
+        super(id, nome, endereco, email, telefone);
+        this.cnpj = cnpj;
+        this.inscricaoEstadual = inscricaoEstadual;
+        this.inscricaoMunicipal = inscricaoMunicipal;
+        this.pais = pais;
+        this.regimeTributario = regimeTributario;
+        this.naturezaJuridica = naturezaJuridica;
+        this.codigoAtividade = codigoAtividade;
+        this.responsavel = responsavel;
+        this.cpfResponsavel = cpfResponsavel;
+        this.situacaoCadastral = situacaoCadastral;
+    }
+
     public String getCnpj() {
         return cnpj;
     }

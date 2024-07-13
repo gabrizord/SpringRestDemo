@@ -25,6 +25,13 @@ public class PessoaFisica extends Pessoa {
         this.rg = rg;
     }
 
+    public PessoaFisica(Long id, String nome, String endereco, String email, String telefone,
+                        String cpf, String rg) {
+        super(id, nome, endereco, email, telefone);
+        this.cpf = cpf;
+        this.rg = rg;
+    }
+
     public String getCpf() {
         return cpf;
     }

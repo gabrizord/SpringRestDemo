@@ -1,5 +1,6 @@
 package br.com.gabrizord.springrestdemo.domain.services;
 
+import br.com.gabrizord.springrestdemo.api.converter.PessoaConverter;
 import br.com.gabrizord.springrestdemo.domain.entities.Pessoa;
 import br.com.gabrizord.springrestdemo.api.dto.PessoaDTO;
 import br.com.gabrizord.springrestdemo.domain.entities.PessoaFisica;
@@ -66,7 +67,6 @@ public class PessoaService {
     }
 
     public Pessoa convertToEntity(PessoaDTO pessoaDTO) {
-        return pessoaDTO.toEntity();
+        return PessoaConverter.toEntity(pessoaDTO);
     }
-
 }
