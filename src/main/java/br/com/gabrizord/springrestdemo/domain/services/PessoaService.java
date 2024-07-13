@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class PessoaService {
@@ -48,11 +50,8 @@ public class PessoaService {
         checkUnique(pessoa);
         if (pessoa instanceof PessoaFisica) {
             return pessoaFisicaRepository.save((PessoaFisica) pessoa);
-        } else if (pessoa instanceof PessoaJuridica) {
-            return pessoaJuridicaRepository.save((PessoaJuridica) pessoa);
-        } else {
-            throw new IllegalArgumentException("Tipo de pessoa inválido.");
         }
+        return pessoaJuridicaRepository.save((PessoaJuridica) pessoa);
     }
 
     private void checkUnique(Pessoa pessoa) {
@@ -79,5 +78,31 @@ public class PessoaService {
 
     public Pessoa convertToEntity(PessoaDTO pessoaDTO) {
         return PessoaConverter.toEntity(pessoaDTO);
+    }
+
+    public Pessoa update(Pessoa pessoa, Map<String, Object> updates) {
+        pessoa.setNome(Objects.toString(updates.getOrDefault("nome", pessoa.getNome())));
+        pessoa.setEmail(Objects.toString(updates.getOrDefault("email", pessoa.getEmail())));
+        pessoa.setEndereco(Objects.toString(updates.getOrDefault("endereco", pessoa.getEndereco())));
+        pessoa.setTelefone(Objects.toString(updates.getOrDefault("telefone", pessoa.getTelefone())));
+
+        if (pessoa instanceof PessoaFisica pessoaFisica) {
+            pessoaFisica.setCpf(Objects.toString(updates.getOrDefault("cpf", pessoaFisica.getCpf())));
+            pessoaFisica.setRg(Objects.toString(updates.getOrDefault("rg", pessoaFisica.getRg())));
+        } else if (pessoa instanceof PessoaJuridica pessoaJuridica) {
+            pessoaJuridica.setCnpj(Objects.toString(updates.getOrDefault("cnpj", pessoaJuridica.getCnpj())));
+            pessoaJuridica.setInscricaoEstadual(Objects.toString(updates.getOrDefault("inscricaoEstadual", pessoaJuridica.getInscricaoEstadual())));
+            pessoaJuridica.setInscricaoMunicipal(Objects.toString(updates.getOrDefault("inscricaoMunicipal", pessoaJuridica.getInscricaoMunicipal())));
+            pessoaJuridica.setPais(Objects.toString(updates.getOrDefault("pais", pessoaJuridica.getPais())));
+            pessoaJuridica.setRegimeTributario(Objects.toString(updates.getOrDefault("regimeTributario", pessoaJuridica.getRegimeTributario())));
+            pessoaJuridica.setNaturezaJuridica(Objects.toString(updates.getOrDefault("naturezaJuridica", pessoaJuridica.getNaturezaJuridica())));
+            pessoaJuridica.setCodigoAtividade(Objects.toString(updates.getOrDefault("codigoAtividade", pessoaJuridica.getCodigoAtividade())));
+            pessoaJuridica.setResponsavel(Objects.toString(updates.getOrDefault("responsavel", pessoaJuridica.getResponsavel())));
+            pessoaJuridica.setCpfResponsavel(Objects.toString(updates.getOrDefault("cpfResponsavel", pessoaJuridica.getCpfResponsavel())));
+            pessoaJuridica.setSituacaoCadastral(Objects.toString(updates.getOrDefault("situacaoCadastral", pessoaJuridica.getSituacaoCadastral())));
+        }
+
+
+        return pessoaRepository.save(pessoa);
     }
 }

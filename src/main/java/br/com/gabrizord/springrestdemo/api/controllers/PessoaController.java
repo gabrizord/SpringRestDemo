@@ -75,8 +75,9 @@ public class PessoaController {
             @ApiResponse(responseCode = "404", description = "Pessoa não encontrada"),
             @ApiResponse(responseCode = "400", description = "Dados inválidos para atualização")
     })
-    public ResponseEntity<Pessoa> updatePessoa(@PathVariable Long id, @RequestBody Map<String, Object> updates) {
-        return ResponseEntity.ok(new Pessoa());
+    public ResponseEntity<Pessoa> updatePessoa(@PathVariable Long id, @Valid @RequestBody Map<String, Object> updates) {
+        Pessoa pessoa = pessoaService.findById(id);
+        return ResponseEntity.ok(pessoaService.update(pessoa, updates));
     }
 
     @DeleteMapping("/{id}")
