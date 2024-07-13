@@ -86,10 +86,9 @@ public class PessoaController {
             @ApiResponse(responseCode = "204", description = "Pessoa deletada com sucesso"),
             @ApiResponse(responseCode = "404", description = "Pessoa não encontrada")
     })
-    public ResponseEntity<Void> deletePessoa(@PathVariable Long id) {
-        pessoaService.findById(id);
-        pessoaService.deleteById(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Pessoa> deletePessoa(@PathVariable Long id) {
+        Pessoa pessoa = pessoaService.findById(id);
+        pessoaService.deleteById(pessoa.getId());
+        return ResponseEntity.ok(pessoa);
     }
-
 }
