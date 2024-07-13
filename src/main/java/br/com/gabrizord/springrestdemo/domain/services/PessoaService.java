@@ -1,19 +1,18 @@
-package br.com.gabrizord.springrestdemo.services;
+package br.com.gabrizord.springrestdemo.domain.services;
 
-import br.com.gabrizord.springrestdemo.entities.Pessoa;
-import br.com.gabrizord.springrestdemo.dtos.PessoaDTO;
-import br.com.gabrizord.springrestdemo.entities.PessoaFisica;
-import br.com.gabrizord.springrestdemo.entities.PessoaJuridica;
-import br.com.gabrizord.springrestdemo.repositories.PessoaFisicaRepository;
-import br.com.gabrizord.springrestdemo.repositories.PessoaJuridicaRepository;
-import br.com.gabrizord.springrestdemo.repositories.PessoaRepository;
+import br.com.gabrizord.springrestdemo.domain.entities.Pessoa;
+import br.com.gabrizord.springrestdemo.api.dto.PessoaDTO;
+import br.com.gabrizord.springrestdemo.domain.entities.PessoaFisica;
+import br.com.gabrizord.springrestdemo.domain.entities.PessoaJuridica;
+import br.com.gabrizord.springrestdemo.domain.repositories.PessoaFisicaRepository;
+import br.com.gabrizord.springrestdemo.domain.repositories.PessoaJuridicaRepository;
+import br.com.gabrizord.springrestdemo.domain.repositories.PessoaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PessoaService {

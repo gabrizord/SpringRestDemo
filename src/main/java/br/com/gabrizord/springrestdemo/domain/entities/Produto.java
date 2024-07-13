@@ -1,4 +1,4 @@
-package br.com.gabrizord.springrestdemo.entities;
+package br.com.gabrizord.springrestdemo.domain.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;

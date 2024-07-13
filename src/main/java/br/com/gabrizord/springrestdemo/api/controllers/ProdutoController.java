@@ -1,7 +1,7 @@
-package br.com.gabrizord.springrestdemo.controllers;
+package br.com.gabrizord.springrestdemo.api.controllers;
 
-import br.com.gabrizord.springrestdemo.entities.Produto;
-import br.com.gabrizord.springrestdemo.services.ProdutoService;
+import br.com.gabrizord.springrestdemo.domain.entities.Produto;
+import br.com.gabrizord.springrestdemo.domain.services.ProdutoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;

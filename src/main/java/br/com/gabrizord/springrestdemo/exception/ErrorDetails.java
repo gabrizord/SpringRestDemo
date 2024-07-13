@@ -1,4 +1,4 @@
-package br.com.gabrizord.springrestdemo.exceptions;
+package br.com.gabrizord.springrestdemo.exception;
 
 import java.time.LocalDateTime;
 

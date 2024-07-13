@@ -1,7 +1,8 @@
 package br.com.gabrizord.springrestdemo.controllers;
 
-import br.com.gabrizord.springrestdemo.entities.PessoaFisica;
-import br.com.gabrizord.springrestdemo.services.PessoaService;
+import br.com.gabrizord.springrestdemo.api.controllers.PessoaController;
+import br.com.gabrizord.springrestdemo.domain.entities.PessoaFisica;
+import br.com.gabrizord.springrestdemo.domain.services.PessoaService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

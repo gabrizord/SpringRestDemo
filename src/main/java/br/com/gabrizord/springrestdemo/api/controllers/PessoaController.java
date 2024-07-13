@@ -1,10 +1,10 @@
-package br.com.gabrizord.springrestdemo.controllers;
+package br.com.gabrizord.springrestdemo.api.controllers;
 
-import br.com.gabrizord.springrestdemo.dtos.PessoaFisicaDTO;
-import br.com.gabrizord.springrestdemo.dtos.PessoaJuridicaDTO;
-import br.com.gabrizord.springrestdemo.entities.Pessoa;
-import br.com.gabrizord.springrestdemo.dtos.PessoaDTO;
-import br.com.gabrizord.springrestdemo.services.PessoaService;
+import br.com.gabrizord.springrestdemo.api.dto.PessoaFisicaDTO;
+import br.com.gabrizord.springrestdemo.api.dto.PessoaJuridicaDTO;
+import br.com.gabrizord.springrestdemo.domain.entities.Pessoa;
+import br.com.gabrizord.springrestdemo.api.dto.PessoaDTO;
+import br.com.gabrizord.springrestdemo.domain.services.PessoaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -17,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/pessoas")

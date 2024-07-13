@@ -1,6 +1,6 @@
-package br.com.gabrizord.springrestdemo.dtos;
+package br.com.gabrizord.springrestdemo.api.dto;
 
-import br.com.gabrizord.springrestdemo.entities.Pessoa;
+import br.com.gabrizord.springrestdemo.domain.entities.Pessoa;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

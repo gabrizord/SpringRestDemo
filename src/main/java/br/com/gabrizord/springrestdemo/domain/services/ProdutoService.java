@@ -1,7 +1,7 @@
-package br.com.gabrizord.springrestdemo.services;
+package br.com.gabrizord.springrestdemo.domain.services;
 
-import br.com.gabrizord.springrestdemo.entities.Produto;
-import br.com.gabrizord.springrestdemo.repositories.ProdutoRepository;
+import br.com.gabrizord.springrestdemo.domain.entities.Produto;
+import br.com.gabrizord.springrestdemo.domain.repositories.ProdutoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;

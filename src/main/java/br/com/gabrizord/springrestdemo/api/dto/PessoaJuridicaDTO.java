@@ -1,62 +1,58 @@
-package br.com.gabrizord.springrestdemo.entities;
+package br.com.gabrizord.springrestdemo.api.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
+import br.com.gabrizord.springrestdemo.domain.entities.PessoaJuridica;
+import jakarta.validation.constraints.Size;
 
-@Entity
-@DiscriminatorValue("J")
-public class PessoaJuridica extends Pessoa {
+public class PessoaJuridicaDTO extends PessoaDTO {
 
-    @Column(length = 20)
+    @Size(min = 14, max = 20, message = "CNPJ deve ter entre 14 e 20 caracteres")
     private String cnpj;
 
-    @Column(length = 20)
+    @Size(max = 20, message = "Inscrição Estadual não pode ter mais de 20 caracteres")
     private String inscricaoEstadual;
 
-    @Column(length = 20)
+    @Size(max = 20, message = "Inscrição Municipal não pode ter mais de 20 caracteres")
     private String inscricaoMunicipal;
 
-    @Column(length = 50)
+    @Size(max = 50, message = "Pais não pode ter mais de 50 caracteres")
     private String pais;
 
-    @Column(length = 20)
+    @Size(max = 20, message = "Regime Tributário não pode ter mais de 20 caracteres")
     private String regimeTributario;
 
-    @Column(length = 100)
+    @Size(max = 100, message = "Natureza Jurídica não pode ter mais de 100 caracteres")
     private String naturezaJuridica;
 
-    @Column(length = 20)
+    @Size(max = 20, message = "Código de Atividade não pode ter mais de 20 caracteres")
     private String codigoAtividade;
 
-    @Column()
+    @Size(max = 255, message = "Responsável não pode ter mais de 255 caracteres")
     private String responsavel;
 
-    @Column(length = 14)
+    @Size(min = 11, max = 14, message = "CPF do Responsável deve ter entre 11 e 14 caracteres")
     private String cpfResponsavel;
 
-    @Column(length = 20)
+    @Size(max = 20, message = "Situação Cadastral não pode ter mais de 20 caracteres")
     private String situacaoCadastral;
 
-    public PessoaJuridica() {
-        super();
-    }
-
-    public PessoaJuridica(String nome, String endereco, String email, String telefone,
-                          String cnpj, String inscricaoEstadual, String inscricaoMunicipal, String pais,
-                          String regimeTributario, String naturezaJuridica, String codigoAtividade,
-                          String responsavel, String cpfResponsavel, String situacaoCadastral) {
-        super(nome, endereco, email, telefone);
-        this.cnpj = cnpj;
-        this.inscricaoEstadual = inscricaoEstadual;
-        this.inscricaoMunicipal = inscricaoMunicipal;
-        this.pais = pais;
-        this.regimeTributario = regimeTributario;
-        this.naturezaJuridica = naturezaJuridica;
-        this.codigoAtividade = codigoAtividade;
-        this.responsavel = responsavel;
-        this.cpfResponsavel = cpfResponsavel;
-        this.situacaoCadastral = situacaoCadastral;
+    @Override
+    public PessoaJuridica toEntity() {
+        return new PessoaJuridica(
+                this.getNome(),
+                this.getEndereco(),
+                this.getEmail(),
+                this.getTelefone(),
+                this.getCnpj(),
+                this.getInscricaoEstadual(),
+                this.getInscricaoMunicipal(),
+                this.getPais(),
+                this.getRegimeTributario(),
+                this.getNaturezaJuridica(),
+                this.getCodigoAtividade(),
+                this.getResponsavel(),
+                this.getCpfResponsavel(),
+                this.getSituacaoCadastral()
+        );
     }
 
     public String getCnpj() {
@@ -81,14 +77,6 @@ public class PessoaJuridica extends Pessoa {
 
     public void setInscricaoMunicipal(String inscricaoMunicipal) {
         this.inscricaoMunicipal = inscricaoMunicipal;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
     }
 
     public String getRegimeTributario() {
@@ -137,5 +125,13 @@ public class PessoaJuridica extends Pessoa {
 
     public void setSituacaoCadastral(String situacaoCadastral) {
         this.situacaoCadastral = situacaoCadastral;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
     }
 }

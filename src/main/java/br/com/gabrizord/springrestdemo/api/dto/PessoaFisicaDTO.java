@@ -1,6 +1,6 @@
-package br.com.gabrizord.springrestdemo.dtos;
+package br.com.gabrizord.springrestdemo.api.dto;
 
-import br.com.gabrizord.springrestdemo.entities.PessoaFisica;
+import br.com.gabrizord.springrestdemo.domain.entities.PessoaFisica;
 import jakarta.validation.constraints.Size;
 
 public class PessoaFisicaDTO extends PessoaDTO {
