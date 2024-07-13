@@ -33,14 +33,6 @@ public class Pessoa {
         this.telefone = telefone;
     }
 
-    public Pessoa(Long id, String nome, String endereco, String email, String telefone) {
-        this.id = id;
-        this.nome = nome;
-        this.endereco = endereco;
-        this.email = email;
-        this.telefone = telefone;
-    }
-
     public String getTelefone() {
         return telefone;
     }

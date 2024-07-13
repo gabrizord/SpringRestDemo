@@ -1,91 +1,66 @@
-package br.com.gabrizord.springrestdemo.domain.entities;
+package br.com.gabrizord.springrestdemo.api.dto;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 
+public class ProdutoDTO {
 
-@Entity
-@Table(name = "produto")
-public class Produto
-{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @Column(length = 50, unique = true)
+    @NotBlank(message = "Código é obrigatório")
+    @Size(max = 50, message = "Código não pode ter mais de 50 caracteres")
     private String codigo;
 
-    @Column(length = 50)
+    @NotBlank(message = "Nome é obrigatório")
+    @Size(max = 50, message = "Nome não pode ter mais de 50 caracteres")
     private String nome;
 
-    @Column(length = 100)
+    @NotBlank(message = "Descrição é obrigatória")
+    @Size(max = 255, message = "Descrição não pode ter mais de 255 caracteres")
     private String descricao;
-    
-    @Column(length = 8)
+
+    @NotBlank(message = "NCM é obrigatório")
+    @Size(min = 8, max = 8, message = "NCM deve ter 8 caracteres")
     private String ncm;
 
-    @Column(length = 3)
+    @NotBlank(message = "CST é obrigatório")
+    @Size(max = 3, message = "CST não pode ter mais de 3 caracteres")
     private String cst;
 
-    @Column(length = 4)
+    @NotBlank(message = "CFOP é obrigatório")
+    @Size(max = 4, message = "CFOP não pode ter mais de 4 caracteres")
     private String cfop;
 
-    @Column(length = 2)
+    @NotBlank(message = "Unidade é obrigatória")
+    @Size(max = 6, message = "Unidade não pode ter mais de 6 caracteres")
     private String unidade;
 
-    @Column(length = 10)
+    @NotNull(message = "Quantidade é obrigatória")
+    @PositiveOrZero(message = "Quantidade deve ser positiva")
     private BigDecimal quantidade;
 
-    @Column(length = 10)
+    @NotNull(message = "Valor Unitário é obrigatório")
+    @PositiveOrZero(message = "Valor Unitário deve ser zero ou positivo")
     private BigDecimal valorUnitario;
 
-    @Column(length = 10)
+    @NotNull(message = "Valor Total é obrigatório")
+    @PositiveOrZero(message = "Valor Total deve ser zero ou positivo")
     private BigDecimal valorTotal;
 
-    @Column(length = 10)
+    @NotNull(message = "Base de Cálculo do ICMS é obrigatória")
+    @PositiveOrZero(message = "Base de Cálculo do ICMS deve ser zero ou positiva")
     private BigDecimal baseCalculoIcms;
 
-    @Column(length = 10)
+    @NotNull(message = "Valor do ICMS é obrigatório")
+    @PositiveOrZero(message = "Valor do ICMS deve ser zero ou positivo")
     private BigDecimal valorIcms;
 
-    @Column(length = 10)
+    @NotNull(message = "Alíquota do ICMS é obrigatória")
+    @PositiveOrZero(message = "Alíquota do ICMS deve ser zero ou positiva")
     private BigDecimal aliquotaIcms;
 
-    @Column(length = 500)
+    @NotBlank(message = "Informações Adicionais é obrigatório")
+    @Size(max = 500, message = "Informações Adicionais não podem ter mais de 500 caracteres")
     private String informacoesAdicionais;
-
-    public Produto(String codigo, String nome, String descricao, String ncm, String cst, String cfop, String unidade, BigDecimal quantidade, BigDecimal valorUnitario, BigDecimal valorTotal, BigDecimal baseCalculoIcms, BigDecimal valorIcms, BigDecimal aliquotaIcms, String informacoesAdicionais) {
-        this.codigo = codigo;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.ncm = ncm;
-        this.cst = cst;
-        this.cfop = cfop;
-        this.unidade = unidade;
-        this.quantidade = quantidade;
-        this.valorUnitario = valorUnitario;
-        this.valorTotal = valorTotal;
-        this.baseCalculoIcms = baseCalculoIcms;
-        this.valorIcms = valorIcms;
-        this.aliquotaIcms = aliquotaIcms;
-        this.informacoesAdicionais = informacoesAdicionais;
-    }
-
-    public Produto(){
-
-    }
-
-    // Getters e Setters
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getCodigo() {
         return codigo;
@@ -102,7 +77,6 @@ public class Produto
     public void setNome(String nome) {
         this.nome = nome;
     }
-
     public String getDescricao() {
         return descricao;
     }

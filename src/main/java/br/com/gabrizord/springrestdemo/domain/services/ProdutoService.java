@@ -1,14 +1,15 @@
 package br.com.gabrizord.springrestdemo.domain.services;
 
+import br.com.gabrizord.springrestdemo.api.dto.ProdutoDTO;
 import br.com.gabrizord.springrestdemo.domain.entities.Produto;
 import br.com.gabrizord.springrestdemo.domain.repositories.ProdutoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,13 +23,11 @@ public class ProdutoService {
     }
 
     @Transactional
-    public Produto createProduto(Produto produto) throws DataIntegrityViolationException {
-        try {
-            return produtoRepository.save(produto);
-        } catch (DataIntegrityViolationException e) {
-            // Handle the exception when a duplicate entry occurs
-            throw new DataIntegrityViolationException("Erro ao criar produto: código duplicado", e);
+    public Produto createProduto(Produto produto) {
+        if (produtoRepository.existsByCodigo(produto.getCodigo())) {
+            throw new IllegalArgumentException("Ja existe um produto com o mesmo Codigo");
         }
+        return this.produtoRepository.save(produto);
     }
 
     public ResponseEntity<Produto> getProdutoById(Long id) {
@@ -55,5 +54,28 @@ public class ProdutoService {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    public List<Produto> findAll() {
+        return this.produtoRepository.findAll();
+    }
+
+    public Produto toEntity(ProdutoDTO produtoDTO) {
+        Produto produto = new Produto();
+        produto.setCodigo(produtoDTO.getCodigo());
+        produto.setNome(produtoDTO.getNome());
+        produto.setDescricao(produtoDTO.getDescricao());
+        produto.setNcm(produtoDTO.getNcm());
+        produto.setCst(produtoDTO.getCst());
+        produto.setCfop(produtoDTO.getCfop());
+        produto.setUnidade(produtoDTO.getUnidade());
+        produto.setQuantidade(produtoDTO.getQuantidade());
+        produto.setValorUnitario(produtoDTO.getValorUnitario());
+        produto.setValorTotal(produtoDTO.getValorTotal());
+        produto.setBaseCalculoIcms(produtoDTO.getBaseCalculoIcms());
+        produto.setValorIcms(produtoDTO.getValorIcms());
+        produto.setAliquotaIcms(produtoDTO.getAliquotaIcms());
+        produto.setInformacoesAdicionais(produtoDTO.getInformacoesAdicionais());
+        return produto;
     }
 }
