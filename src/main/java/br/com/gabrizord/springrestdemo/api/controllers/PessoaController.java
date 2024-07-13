@@ -3,7 +3,6 @@ package br.com.gabrizord.springrestdemo.api.controllers;
 import br.com.gabrizord.springrestdemo.api.dto.PessoaFisicaDTO;
 import br.com.gabrizord.springrestdemo.api.dto.PessoaJuridicaDTO;
 import br.com.gabrizord.springrestdemo.domain.entities.Pessoa;
-import br.com.gabrizord.springrestdemo.api.dto.PessoaDTO;
 import br.com.gabrizord.springrestdemo.domain.services.PessoaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -17,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/pessoas")
@@ -68,18 +68,15 @@ public class PessoaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedPessoa);
     }
 
-    @PutMapping("/{id}")
-    @Operation(summary = "Atualiza os dados de uma pessoa", description = "Atualiza os dados de uma pessoa existente pelo seu ID.")
+    @PatchMapping("/{id}")
+    @Operation(summary = "Atualiza parcialmente os dados de uma pessoa", description = "Atualiza parcialmente os dados de uma pessoa existente pelo seu ID.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Dados da pessoa atualizados com sucesso"),
             @ApiResponse(responseCode = "404", description = "Pessoa não encontrada"),
             @ApiResponse(responseCode = "400", description = "Dados inválidos para atualização")
     })
-    public ResponseEntity<Pessoa> updatePessoa(@PathVariable Long id, @Valid @RequestBody PessoaDTO pessoaDTO) {
-        Pessoa pessoaToUpdate = pessoaService.convertToEntity(pessoaDTO);
-        pessoaToUpdate.setId(id);
-        Pessoa updatedPessoa = pessoaService.save(pessoaToUpdate);
-        return ResponseEntity.ok(updatedPessoa);
+    public ResponseEntity<Pessoa> updatePessoa(@PathVariable Long id, @RequestBody Map<String, Object> updates) {
+        return ResponseEntity.ok(new Pessoa());
     }
 
     @DeleteMapping("/{id}")

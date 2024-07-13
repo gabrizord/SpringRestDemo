@@ -32,7 +32,6 @@ public class PessoaService {
         this.pessoaRepository = pessoaRepository;
     }
 
-
     public List<Pessoa> findAll() {
         List<Pessoa> pessoas = new ArrayList<>();
         pessoas.addAll(pessoaFisicaRepository.findAll());
@@ -56,11 +55,6 @@ public class PessoaService {
         }
     }
 
-    public Pessoa update(Pessoa pessoa) {
-
-        return null;
-    }
-
     private void checkUnique(Pessoa pessoa) {
         if (pessoa instanceof PessoaFisica pf) {
             pessoaFisicaRepository.findByCpf(pf.getCpf())
@@ -73,7 +67,6 @@ public class PessoaService {
                         throw new IllegalArgumentException("CNPJ já registrado: " + pj.getCnpj());
                     });
         }
-        // Aqui adicionamos a lógica para verificar a unicidade do e-mail
         pessoaRepository.findByEmail(pessoa.getEmail())
                 .ifPresent(p -> {
                     throw new IllegalArgumentException("E-mail já registrado: " + pessoa.getEmail());
