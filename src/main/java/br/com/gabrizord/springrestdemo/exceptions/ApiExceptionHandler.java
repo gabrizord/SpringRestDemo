@@ -26,7 +26,7 @@ public class ApiExceptionHandler {
     public ResponseEntity<Object> handleEntityNotFoundException(EntityNotFoundException e) {
         ErrorDetails errorDetails = new ErrorDetails(
                 HttpStatus.NOT_FOUND.value(),
-                "Entity not found: " + e.getMessage(),
+                e.getMessage(),
                 LocalDateTime.now()
         );
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDetails);

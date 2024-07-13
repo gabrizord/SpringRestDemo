@@ -42,9 +42,8 @@ public class PessoaService {
 
     public Pessoa findById(Long id) {
         return pessoaRepository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow(() -> new EntityNotFoundException("Pessoa not found with ID: " + id));
     }
-
 
     public Pessoa save(Pessoa pessoa) {
         if (pessoa instanceof PessoaFisica pf) {
