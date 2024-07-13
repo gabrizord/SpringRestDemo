@@ -14,6 +14,9 @@ public class PessoaJuridicaDTO extends PessoaDTO {
     @Size(max = 20, message = "Inscrição Municipal não pode ter mais de 20 caracteres")
     private String inscricaoMunicipal;
 
+    @Size(max = 50, message = "Pais não pode ter mais de 50 caracteres")
+    private String pais;
+
     @Size(max = 20, message = "Regime Tributário não pode ter mais de 20 caracteres")
     private String regimeTributario;
 
@@ -122,5 +125,13 @@ public class PessoaJuridicaDTO extends PessoaDTO {
 
     public void setSituacaoCadastral(String situacaoCadastral) {
         this.situacaoCadastral = situacaoCadastral;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
     }
 }

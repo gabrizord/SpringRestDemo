@@ -42,8 +42,7 @@ public class PessoaController {
     @ApiResponse(responseCode = "200", description = "Pessoa encontrada")
     @ApiResponse(responseCode = "404", description = "Pessoa não encontrada")
     public ResponseEntity<Pessoa> getPessoaById(@PathVariable Long id) {
-        Optional<Pessoa> pessoa = pessoaService.findById(id);
-        return pessoa.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return ResponseEntity.ok(pessoaService.findById(id));
     }
 
     @PostMapping("/fisica")
@@ -76,15 +75,11 @@ public class PessoaController {
             @ApiResponse(responseCode = "400", description = "Dados inválidos para atualização")
     })
     public ResponseEntity<Pessoa> updatePessoa(@PathVariable Long id, @Valid @RequestBody PessoaDTO pessoaDTO) {
-        Optional<Pessoa> existingPessoa = pessoaService.findById(id);
-        if (existingPessoa.isPresent()) {
-            Pessoa pessoaToUpdate = pessoaService.convertToEntity(pessoaDTO);
-            pessoaToUpdate.setId(id);  // Asegura que a entidade a ser atualizada é a correta
-            Pessoa updatedPessoa = pessoaService.save(pessoaToUpdate);
-            return ResponseEntity.ok(updatedPessoa);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        Pessoa existingPessoa = pessoaService.findById(id);
+        Pessoa pessoaToUpdate = pessoaService.convertToEntity(pessoaDTO);
+        pessoaToUpdate.setId(id);
+        Pessoa updatedPessoa = pessoaService.save(pessoaToUpdate);
+        return ResponseEntity.ok(updatedPessoa);
     }
 
     @DeleteMapping("/{id}")
@@ -94,12 +89,9 @@ public class PessoaController {
             @ApiResponse(responseCode = "404", description = "Pessoa não encontrada")
     })
     public ResponseEntity<Void> deletePessoa(@PathVariable Long id) {
-        Optional<Pessoa> pessoa = pessoaService.findById(id);
-        if (pessoa.isPresent()) {
-            pessoaService.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        pessoaService.findById(id);
+        pessoaService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
+
 }

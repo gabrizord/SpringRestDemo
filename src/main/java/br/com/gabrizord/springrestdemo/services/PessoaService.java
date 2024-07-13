@@ -6,6 +6,8 @@ import br.com.gabrizord.springrestdemo.entities.PessoaFisica;
 import br.com.gabrizord.springrestdemo.entities.PessoaJuridica;
 import br.com.gabrizord.springrestdemo.repositories.PessoaFisicaRepository;
 import br.com.gabrizord.springrestdemo.repositories.PessoaJuridicaRepository;
+import br.com.gabrizord.springrestdemo.repositories.PessoaRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +22,14 @@ public class PessoaService {
 
     private final PessoaJuridicaRepository pessoaJuridicaRepository;
 
+    private final PessoaRepository pessoaRepository;
+
 
     @Autowired
-    public PessoaService(PessoaFisicaRepository pessoaFisicaRepository, PessoaJuridicaRepository pessoaJuridicaRepository) {
+    public PessoaService(PessoaFisicaRepository pessoaFisicaRepository, PessoaJuridicaRepository pessoaJuridicaRepository, PessoaRepository pessoaRepository) {
         this.pessoaFisicaRepository = pessoaFisicaRepository;
         this.pessoaJuridicaRepository = pessoaJuridicaRepository;
+        this.pessoaRepository = pessoaRepository;
     }
 
 
@@ -35,12 +40,9 @@ public class PessoaService {
         return pessoas;
     }
 
-    public Optional<Pessoa> findById(Long id) {
-        Optional<Pessoa> pessoa = pessoaFisicaRepository.findById(id).map(p -> p);
-        if (pessoa.isEmpty()) {
-            pessoa = pessoaJuridicaRepository.findById(id).map(p -> p);
-        }
-        return pessoa;
+    public Pessoa findById(Long id) {
+        return pessoaRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Pessoa not found with ID: " + id));
     }
 
     public Pessoa save(Pessoa pessoa) {
@@ -61,12 +63,11 @@ public class PessoaService {
     }
 
     public void deleteById(Long id) {
-        pessoaFisicaRepository.deleteById(id);
-        pessoaJuridicaRepository.deleteById(id);
+        pessoaRepository.deleteById(id);
     }
 
     public Pessoa convertToEntity(PessoaDTO pessoaDTO) {
-       return pessoaDTO.toEntity();
+        return pessoaDTO.toEntity();
     }
 
 }
