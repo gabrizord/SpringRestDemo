@@ -1,6 +1,10 @@
 package br.com.gabrizord.springrestdemo.api.dto;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.Length;
 
 import java.math.BigDecimal;
 
@@ -31,7 +35,7 @@ public class ProdutoDTO {
     private String cfop;
 
     @NotBlank(message = "Unidade é obrigatória")
-    @Size(max = 6, message = "Unidade não pode ter mais de 6 caracteres")
+    @Length(max = 6, message = "Unidade não pode ter mais de 6 caracteres")
     private String unidade;
 
     @NotNull(message = "Quantidade é obrigatória")
@@ -77,6 +81,7 @@ public class ProdutoDTO {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
     public String getDescricao() {
         return descricao;
     }

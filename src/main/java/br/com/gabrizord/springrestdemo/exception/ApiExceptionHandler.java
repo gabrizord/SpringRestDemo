@@ -1,5 +1,6 @@
 package br.com.gabrizord.springrestdemo.exception;
 
+import com.mysql.cj.jdbc.exceptions.MysqlDataTruncation;
 import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,6 +58,16 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
+        ErrorDetails errorDetails = new ErrorDetails(
+                HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDetails);
+    }
+
+    @ExceptionHandler(MysqlDataTruncation.class)
+    public ResponseEntity<Object> handleMysqlDataTruncationException(MysqlDataTruncation ex) {
         ErrorDetails errorDetails = new ErrorDetails(
                 HttpStatus.BAD_REQUEST.value(),
                 ex.getMessage(),
