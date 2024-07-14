@@ -1,9 +1,11 @@
 package br.com.gabrizord.springrestdemo.security.model;
 
+import br.com.gabrizord.springrestdemo.security.controller.dto.LoginRequest;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collection;
 import java.util.List;
@@ -58,5 +60,9 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return UserDetails.super.isEnabled();
+    }
+
+    public boolean isLoginCorrect(LoginRequest loginRequest, PasswordEncoder passwordEncoder) {
+       return passwordEncoder.matches(loginRequest.password(), this.password);
     }
 }
