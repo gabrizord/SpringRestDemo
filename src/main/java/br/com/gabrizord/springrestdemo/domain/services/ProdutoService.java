@@ -61,21 +61,9 @@ public class ProdutoService {
     }
 
     public Produto toEntity(ProdutoDTO produtoDTO) {
-        Produto produto = new Produto();
-        produto.setCodigo(produtoDTO.getCodigo());
-        produto.setNome(produtoDTO.getNome());
-        produto.setDescricao(produtoDTO.getDescricao());
-        produto.setNcm(produtoDTO.getNcm());
-        produto.setCst(produtoDTO.getCst());
-        produto.setCfop(produtoDTO.getCfop());
-        produto.setUnidade(produtoDTO.getUnidade());
-        produto.setQuantidade(produtoDTO.getQuantidade());
-        produto.setValorUnitario(produtoDTO.getValorUnitario());
-        produto.setValorTotal(produtoDTO.getValorTotal());
-        produto.setBaseCalculoIcms(produtoDTO.getBaseCalculoIcms());
-        produto.setValorIcms(produtoDTO.getValorIcms());
-        produto.setAliquotaIcms(produtoDTO.getAliquotaIcms());
-        produto.setInformacoesAdicionais(produtoDTO.getInformacoesAdicionais());
-        return produto;
+        return new Produto(produtoDTO.getCodigo(), produtoDTO.getNome(), produtoDTO.getDescricao(), produtoDTO.getNcm(), produtoDTO.getCst(),
+                produtoDTO.getCfop(), produtoDTO.getUnidade(), produtoDTO.getQuantidade(), produtoDTO.getValorUnitario(),
+                produtoDTO.getValorTotal(), produtoDTO.getBaseCalculoIcms(), produtoDTO.getValorIcms(),
+                produtoDTO.getAliquotaIcms(), produtoDTO.getInformacoesAdicionais());
     }
 }

@@ -3,9 +3,14 @@ package br.com.gabrizord.springrestdemo.domain.entities;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
+@Getter
+@NoArgsConstructor
 @Entity
-@DiscriminatorValue("J")
 public class PessoaJuridica extends Pessoa {
 
     @Column(length = 20)
@@ -38,10 +43,6 @@ public class PessoaJuridica extends Pessoa {
     @Column(length = 20)
     private String situacaoCadastral;
 
-    public PessoaJuridica() {
-        super();
-    }
-
     public PessoaJuridica(String nome, String endereco, String email, String telefone,
                           String cnpj, String inscricaoEstadual, String inscricaoMunicipal, String pais,
                           String regimeTributario, String naturezaJuridica, String codigoAtividade,
@@ -59,83 +60,4 @@ public class PessoaJuridica extends Pessoa {
         this.situacaoCadastral = situacaoCadastral;
     }
 
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    public String getInscricaoEstadual() {
-        return inscricaoEstadual;
-    }
-
-    public void setInscricaoEstadual(String inscricaoEstadual) {
-        this.inscricaoEstadual = inscricaoEstadual;
-    }
-
-    public String getInscricaoMunicipal() {
-        return inscricaoMunicipal;
-    }
-
-    public void setInscricaoMunicipal(String inscricaoMunicipal) {
-        this.inscricaoMunicipal = inscricaoMunicipal;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
-
-    public String getRegimeTributario() {
-        return regimeTributario;
-    }
-
-    public void setRegimeTributario(String regimeTributario) {
-        this.regimeTributario = regimeTributario;
-    }
-
-    public String getNaturezaJuridica() {
-        return naturezaJuridica;
-    }
-
-    public void setNaturezaJuridica(String naturezaJuridica) {
-        this.naturezaJuridica = naturezaJuridica;
-    }
-
-    public String getCodigoAtividade() {
-        return codigoAtividade;
-    }
-
-    public void setCodigoAtividade(String codigoAtividade) {
-        this.codigoAtividade = codigoAtividade;
-    }
-
-    public String getResponsavel() {
-        return responsavel;
-    }
-
-    public void setResponsavel(String responsavel) {
-        this.responsavel = responsavel;
-    }
-
-    public String getCpfResponsavel() {
-        return cpfResponsavel;
-    }
-
-    public void setCpfResponsavel(String cpfResponsavel) {
-        this.cpfResponsavel = cpfResponsavel;
-    }
-
-    public String getSituacaoCadastral() {
-        return situacaoCadastral;
-    }
-
-    public void setSituacaoCadastral(String situacaoCadastral) {
-        this.situacaoCadastral = situacaoCadastral;
-    }
 }

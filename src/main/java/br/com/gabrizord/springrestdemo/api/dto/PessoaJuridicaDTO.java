@@ -2,7 +2,11 @@ package br.com.gabrizord.springrestdemo.api.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 public class PessoaJuridicaDTO extends PessoaDTO {
 
     @NotBlank(message = "CNPJ é obrigatório")
@@ -45,83 +49,4 @@ public class PessoaJuridicaDTO extends PessoaDTO {
     @Size(max = 20, message = "Situação Cadastral não pode ter mais de 20 caracteres")
     private String situacaoCadastral;
 
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    public String getInscricaoEstadual() {
-        return inscricaoEstadual;
-    }
-
-    public void setInscricaoEstadual(String inscricaoEstadual) {
-        this.inscricaoEstadual = inscricaoEstadual;
-    }
-
-    public String getInscricaoMunicipal() {
-        return inscricaoMunicipal;
-    }
-
-    public void setInscricaoMunicipal(String inscricaoMunicipal) {
-        this.inscricaoMunicipal = inscricaoMunicipal;
-    }
-
-    public String getRegimeTributario() {
-        return regimeTributario;
-    }
-
-    public void setRegimeTributario(String regimeTributario) {
-        this.regimeTributario = regimeTributario;
-    }
-
-    public String getNaturezaJuridica() {
-        return naturezaJuridica;
-    }
-
-    public void setNaturezaJuridica(String naturezaJuridica) {
-        this.naturezaJuridica = naturezaJuridica;
-    }
-
-    public String getCodigoAtividade() {
-        return codigoAtividade;
-    }
-
-    public void setCodigoAtividade(String codigoAtividade) {
-        this.codigoAtividade = codigoAtividade;
-    }
-
-    public String getResponsavel() {
-        return responsavel;
-    }
-
-    public void setResponsavel(String responsavel) {
-        this.responsavel = responsavel;
-    }
-
-    public String getCpfResponsavel() {
-        return cpfResponsavel;
-    }
-
-    public void setCpfResponsavel(String cpfResponsavel) {
-        this.cpfResponsavel = cpfResponsavel;
-    }
-
-    public String getSituacaoCadastral() {
-        return situacaoCadastral;
-    }
-
-    public void setSituacaoCadastral(String situacaoCadastral) {
-        this.situacaoCadastral = situacaoCadastral;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
 }
