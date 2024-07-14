@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/produtos")
@@ -46,17 +47,37 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Obtém um produto pelo ID", description = "Retorna um objeto do tipo Produto com o ID fornecido.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Produto encontrado",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoDTO.class))),
+            @ApiResponse(responseCode = "404", description = "Produto não encontrado"),
+            @ApiResponse(responseCode = "400", description = "Requisição inválida")
+    })
     public ResponseEntity<Produto> getProdutoById(@PathVariable Long id) {
-        return produtoService.getProdutoById(id);
+        return ResponseEntity.ok(produtoService.getProdutoById(id));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Produto> updateProduto(@PathVariable Long id, @Valid @RequestBody Produto produto) {
-        return produtoService.updateProduto(id, produto);
+    @PatchMapping("/{id}")
+    @Operation(summary = "Atualiza um produto pelo ID", description = "Fornece os novos dados para atualizar o produto com o ID fornecido.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Produto atualizado com sucesso",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoDTO.class))),
+            @ApiResponse(responseCode = "404", description = "Produto não encontrado"),
+            @ApiResponse(responseCode = "400", description = "Requisição inválida")
+    })
+    public ResponseEntity<Produto> updateProduto(@PathVariable Long id, @Valid @RequestBody Map<String, Object> produtoMap) {
+        return ResponseEntity.ok(produtoService.updateProduto(id, produtoMap));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduto(@PathVariable Long id) {
-        return produtoService.deleteProduto(id);
+    @Operation(summary = "Exclui um produto pelo ID", description = "Exclui o produto com o ID fornecido.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Produto excluído com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Produto não encontrado"),
+            @ApiResponse(responseCode = "400", description = "Requisição inválida")
+    })
+    public ResponseEntity<Produto> deleteProduto(@PathVariable Long id) {
+        return ResponseEntity.ok(produtoService.deleteProduto(id));
     }
 }

@@ -101,8 +101,6 @@ public class PessoaService {
             pessoaJuridica.setCpfResponsavel(Objects.toString(updates.getOrDefault("cpfResponsavel", pessoaJuridica.getCpfResponsavel())));
             pessoaJuridica.setSituacaoCadastral(Objects.toString(updates.getOrDefault("situacaoCadastral", pessoaJuridica.getSituacaoCadastral())));
         }
-
-
         return pessoaRepository.save(pessoa);
     }
 }
