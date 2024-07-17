@@ -1,14 +1,15 @@
 package br.com.gabrizord.springrestdemo.security.repository;
 
-import br.com.gabrizord.springrestdemo.security.model.User;
+import br.com.gabrizord.springrestdemo.security.model.UserAuth;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserAuthRepository extends JpaRepository<UserAuth, UUID> {
 
-    Optional<User> findByUsername(String username);
+    Optional<UserAuth> findByUsername(String username);
 
 }

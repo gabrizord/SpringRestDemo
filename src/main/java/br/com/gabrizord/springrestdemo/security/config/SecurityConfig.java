@@ -36,10 +36,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/api/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/produtos/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/produtos").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/v1/produtos/**").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/produtos/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/pessoas/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/pessoas/**").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/v1/pessoas/**").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/pessoas/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
+                .httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
-                .oauth2ResourceServer(oath2 -> oath2.jwt(Customizer.withDefaults()))
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return http.build();
     }
