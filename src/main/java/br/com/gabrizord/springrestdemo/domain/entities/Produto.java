@@ -37,7 +37,7 @@ public class Produto
     @Column(length = 4)
     private String cfop;
 
-    @Column(length = 2)
+    @Column(length = 6)
     private String unidade;
 
     @Column(length = 10)

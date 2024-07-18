@@ -18,6 +18,8 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
 
 import java.security.interfaces.RSAPrivateKey;
@@ -38,19 +40,28 @@ public class SecurityConfig {
         http.authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/produtos/**").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/api/v1/produtos").hasAnyRole("ADMIN")
-                        .requestMatchers(HttpMethod.PATCH, "/api/v1/produtos/**").hasAnyRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/v1/produtos/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/produtos/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/v1/produtos/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/produtos/**").hasAnyAuthority("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/v1/pessoas/**").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/api/v1/pessoas/**").hasAnyRole("ADMIN")
-                        .requestMatchers(HttpMethod.PATCH, "/api/v1/pessoas/**").hasAnyRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/v1/pessoas/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/pessoas/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/v1/pessoas/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/pessoas/**").hasAnyAuthority("ADMIN")
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return http.build();
+    }
+
+    @Bean
+    public JwtAuthenticationConverter jwtAuthenticationConverter() {
+        JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+        grantedAuthoritiesConverter.setAuthorityPrefix("");
+        JwtAuthenticationConverter authConverter = new JwtAuthenticationConverter();
+        authConverter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);
+        return authConverter;
     }
 
     @Bean

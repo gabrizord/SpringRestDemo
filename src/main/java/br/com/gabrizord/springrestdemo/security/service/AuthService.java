@@ -15,5 +15,4 @@ public class AuthService {
     public String login(Authentication authentication) {
         return jwtService.generateToken(authentication);
     }
-
 }
