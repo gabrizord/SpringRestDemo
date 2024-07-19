@@ -29,6 +29,8 @@ import java.security.interfaces.RSAPublicKey;
 @EnableWebSecurity
 public class SecurityConfig {
 
+
+
     @Value("${jwt.public.key}")
     private RSAPublicKey publicKey;
 
@@ -37,16 +39,19 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        String produtosUrl = "/api/v1/produtos/**";
+        String pessoasUrl = "/api/v1/pessoas/**";
+        String adminRole = "ADMIN";
         http.authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/produtos/**").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/api/v1/produtos/**").hasAnyAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.PATCH, "/api/v1/produtos/**").hasAnyAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/v1/produtos/**").hasAnyAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/v1/pessoas/**").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/api/v1/pessoas/**").hasAnyAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.PATCH, "/api/v1/pessoas/**").hasAnyAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/v1/pessoas/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.GET, produtosUrl).authenticated()
+                        .requestMatchers(HttpMethod.POST, produtosUrl).hasAnyAuthority(adminRole)
+                        .requestMatchers(HttpMethod.PATCH, produtosUrl).hasAnyAuthority(adminRole)
+                        .requestMatchers(HttpMethod.DELETE, produtosUrl).hasAnyAuthority(adminRole)
+                        .requestMatchers(HttpMethod.GET, pessoasUrl).authenticated()
+                        .requestMatchers(HttpMethod.POST,  pessoasUrl).hasAnyAuthority(adminRole)
+                        .requestMatchers(HttpMethod.PATCH,  pessoasUrl).hasAnyAuthority(adminRole)
+                        .requestMatchers(HttpMethod.DELETE, pessoasUrl).hasAnyAuthority(adminRole)
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)

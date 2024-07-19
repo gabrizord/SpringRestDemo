@@ -8,7 +8,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,10 +37,8 @@ public class PessoaController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Obtém uma pessoa por ID", description = "Retorna os dados de uma pessoa específica pelo seu ID.")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Pessoa encontrada"),
-            @ApiResponse(responseCode = "404", description = "Pessoa não encontrada")
-    })
+    @ApiResponse(responseCode = "200", description = "Pessoa encontrada")
+    @ApiResponse(responseCode = "404", description = "Pessoa não encontrada")
     public ResponseEntity<Pessoa> getPessoaById(@PathVariable Long id) {
         return ResponseEntity.ok(pessoaService.findById(id));
     }
@@ -70,11 +67,9 @@ public class PessoaController {
 
     @PatchMapping("/{id}")
     @Operation(summary = "Atualiza parcialmente os dados de uma pessoa", description = "Atualiza parcialmente os dados de uma pessoa existente pelo seu ID.")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Dados da pessoa atualizados com sucesso"),
-            @ApiResponse(responseCode = "404", description = "Pessoa não encontrada"),
-            @ApiResponse(responseCode = "400", description = "Dados inválidos para atualização")
-    })
+    @ApiResponse(responseCode = "200", description = "Dados da pessoa atualizados com sucesso")
+    @ApiResponse(responseCode = "404", description = "Pessoa não encontrada")
+    @ApiResponse(responseCode = "400", description = "Dados inválidos para atualização")
     public ResponseEntity<Pessoa> updatePessoa(@PathVariable Long id, @Valid @RequestBody Map<String, Object> updates) {
         Pessoa pessoa = pessoaService.findById(id);
         return ResponseEntity.ok(pessoaService.update(pessoa, updates));
@@ -82,10 +77,8 @@ public class PessoaController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Deleta uma pessoa", description = "Remove uma pessoa do sistema pelo seu ID.")
-    @ApiResponses({
-            @ApiResponse(responseCode = "204", description = "Pessoa deletada com sucesso"),
-            @ApiResponse(responseCode = "404", description = "Pessoa não encontrada")
-    })
+    @ApiResponse(responseCode = "204", description = "Pessoa deletada com sucesso")
+    @ApiResponse(responseCode = "404", description = "Pessoa não encontrada")
     public ResponseEntity<Pessoa> deletePessoa(@PathVariable Long id) {
         Pessoa pessoa = pessoaService.findById(id);
         pessoaService.deleteById(pessoa.getId());
