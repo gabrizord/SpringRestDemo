@@ -48,8 +48,8 @@ public class PessoaService {
 
     public Pessoa save(Pessoa pessoa) {
         checkUnique(pessoa);
-        if (pessoa instanceof PessoaFisica) {
-            return pessoaFisicaRepository.save((PessoaFisica) pessoa);
+        if (pessoa instanceof PessoaFisica pessoaFisica) {
+            return pessoaFisicaRepository.save(pessoaFisica);
         }
         return pessoaJuridicaRepository.save((PessoaJuridica) pessoa);
     }

@@ -9,11 +9,13 @@ import br.com.gabrizord.springrestdemo.domain.entities.PessoaJuridica;
 
 public class PessoaConverter {
 
+    private PessoaConverter() {}
+
     public static Pessoa toEntity(PessoaDTO pessoaDTO) {
-        if (pessoaDTO instanceof PessoaFisicaDTO) {
-            return toEntity((PessoaFisicaDTO) pessoaDTO);
-        } else if (pessoaDTO instanceof PessoaJuridicaDTO) {
-            return toEntity((PessoaJuridicaDTO) pessoaDTO);
+        if (pessoaDTO instanceof PessoaFisicaDTO pessoaFisicaDTO) {
+            return toEntity(pessoaFisicaDTO);
+        } else if (pessoaDTO instanceof PessoaJuridicaDTO pessoaJuridicaDTO) {
+            return toEntity(pessoaJuridicaDTO);
         }
         return new Pessoa(
                 pessoaDTO.getNome(),

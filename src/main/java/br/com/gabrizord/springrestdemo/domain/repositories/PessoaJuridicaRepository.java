@@ -9,6 +9,6 @@ import java.util.Optional;
 @Repository
 public interface PessoaJuridicaRepository extends JpaRepository<PessoaJuridica, Long> {
 
-    Optional<PessoaJuridica> findByCnpj(String C);
+    Optional<PessoaJuridica> findByCnpj(String cnpj);
 
 }
