@@ -1,6 +1,5 @@
 package br.com.gabrizord.springrestdemo.exception;
 
-import com.mysql.cj.jdbc.exceptions.MysqlDataTruncation;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -62,17 +61,6 @@ public class ApiExceptionHandler {
         );
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDetails);
     }
-
-    @ExceptionHandler(MysqlDataTruncation.class)
-    public ResponseEntity<Object> handleMysqlDataTruncationException(MysqlDataTruncation ex) {
-        ErrorDetails errorDetails = new ErrorDetails(
-                HttpStatus.BAD_REQUEST.value(),
-                ex.getMessage(),
-                LocalDateTime.now()
-        );
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDetails);
-    }
-
 
     @ExceptionHandler(UsernameNotFoundException.class)
     public ResponseEntity<Object> handleUsarnameNotFoundException(UsernameNotFoundException ex) {
